@@ -58,6 +58,12 @@ export default function ThingPage() {
     fetchThings();
   };
 
+  const cancelEdit = () => {
+    setFormData({ name: '', color: '', price: 0, quantity: 0 });
+    setIsEditing(false);
+    setEditId(null);
+  };
+
   return (
     <div>
       <h1>Things</h1>
@@ -104,7 +110,38 @@ export default function ThingPage() {
             style={{ color: '#000', margin: '5px 0' }}
           />
         </div>
-        <button type="submit">{isEditing ? 'Update Thing' : 'Add Thing'}</button>
+        <button
+          type="submit"
+          style={{
+            backgroundColor: '#007bff',
+            color: 'white',
+            padding: '10px 20px',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            marginTop: '10px',
+          }}
+        >
+          {isEditing ? 'Update Thing' : 'Add Thing'}
+        </button>
+        {isEditing && (
+          <button
+            type="button"
+            onClick={cancelEdit}
+            style={{
+              backgroundColor: '#dc3545',
+              color: 'white',
+              padding: '10px 20px',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              marginTop: '10px',
+              marginLeft: '10px',
+            }}
+          >
+            Cancel
+          </button>
+        )}
       </form>
 
       <ul style={{ marginTop: '20px' }}>
